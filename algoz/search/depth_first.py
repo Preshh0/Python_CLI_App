@@ -1,5 +1,5 @@
-from algoz.data_structures.binary_tree import BinaryTree
-#the order checks in the root, left right order according to family
+from data_structures.binary_tree import BinaryTree
+#the order seperates nodes into familys(ie root, left, right) it then checks in the root, left right order according to family
 def pre_order_search(target, root):
     if root:
 
@@ -13,7 +13,37 @@ def pre_order_search(target, root):
             return True
 
     return False
+
+def post_order_search(target, root):
+    if root:
+
+        if post_order_search(target, root.left):
+            return True
+
+        if post_order_search(target, root.right):
+            return True
+
+        if root.data == target:
+            return True
+
+
+    return False
             
+def in_order_search(target, root):
+    if root:
+
+        if in_order_search(target, root.left):
+            return True
+
+        if root.data == target:
+            return True
+
+        if in_order_search(target, root.right):
+            return True
+
+    return False
+            
+
 def search(args):
     bt = BinaryTree()
 
@@ -32,3 +62,31 @@ def search(args):
             print("Word not found :(")
 
         
+    if args.order == "post-order":
+        print("Searching tree...")
+
+        target = args.word
+
+        if post_order_search(target, bt.root):
+            print("Word Found!")
+            return
+        else:
+            print("Word not found :(")
+            return
+
+        
+    if args.order == "in-order":
+        print("Searching tree...")
+
+        target = args.word
+
+        if in_order_search(target, bt.root):
+            print("Word Found!")
+            return
+        else:
+            print("Word not found :(")
+            return
+
+    print("Depth first search can only be used with --order 'pre-order', 'post-order', or 'in-order'. ")
+        
+        #post order: left, right, root. in order:left, root, right

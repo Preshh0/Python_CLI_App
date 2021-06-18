@@ -2,6 +2,7 @@
 import argparse
 from search import breadth_first
 from search import depth_first
+from search import binary
 
 def main():
     #arg parser
@@ -44,13 +45,13 @@ def main():
         breadth_first.search(args)
         return
 
-    # #binary search
-    # if args.search_algorithm == "binary-search":
-    #     binary.search(args)
-    #     return
+    # #binary search (It's left sub tree is lesser than the root and the right sub tree only contains values greater than it's root node's data. It also helps us avoid searching for our data in nodes we know the data doesn't exist; it results in a fast and efficient search.)
+    if args.search_algorithm == "binary-search":
+        binary.search(args)
+        return
 
-    # print(args)
-    # print(args.search_algorithm) 
+    print(args)
+    print(args.search_algorithm) 
     
 if __name__ == "__main__":
     main()
